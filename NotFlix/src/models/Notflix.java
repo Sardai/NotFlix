@@ -4,22 +4,31 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * @author chris
  *
  */
 public class Notflix {
-
+	
+	private final List<Gebruiker> gebruikers;
 	private final List<Movie> movies;
-	private final List<String> tokens; 
+	private final Map<Gebruiker,String> tokens; 
 	
 	public Notflix(){
 		movies = new ArrayList<>();
-		tokens = new ArrayList<>();
+		tokens = new HashMap<>();
+		gebruikers = new ArrayList<>();
 	}
 	
+	public List<Gebruiker> getGebruikers(){
+		return gebruikers;
+	}
+		
 	public List<Movie> getMovies(){
 		return movies;
 	}
@@ -56,8 +65,36 @@ public class Notflix {
 		return null;
 	}	
 	
-	public void createToken(){
+	public void addGebruiker(Gebruiker gebruiker){
+		gebruikers.add(gebruiker);
+	}
+	
+	public String createToken(String nickname,String password){
+		 for (Gebruiker gebruiker : gebruikers) {
+			if(gebruiker.getNickname().equals(nickname) && gebruiker.getWachtwoord().equals(password)){
+				
+				if(tokens.containsKey(gebruiker)){
+					return tokens.get(gebruiker);
+				}
+				
+				String token = generateToken();
+				tokens.put(gebruiker, token);
+				return token;
+			}
+		}
+		 return null;
+	}
+	
+	private String generateToken(){
+		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		String token = "";
+		int tokenLength = 48;
+		Random random = new Random();
+		for (int i = 0; i < tokenLength; i++) {
+			token+= chars.charAt(random.nextInt(chars.length()));
+		}
 		
+		return token;
 	}
 	
 }

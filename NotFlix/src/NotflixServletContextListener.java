@@ -5,6 +5,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import models.Movie;
+import models.Gebruiker;
 import models.Notflix;
 
 /**
@@ -40,6 +41,10 @@ public class NotflixServletContextListener implements ServletContextListener{
 		 movies.add(new Movie("tt1877832","X-Men: Days of Future Past","2014-05-23",132,"Bryan Singer","The X-Men send Wolverine to the past in a desperate effort to change history and prevent an event that results in doom for both humans and mutants."));
 		 movies.add(new Movie("tt0167260","The Lord of the Rings: The Return of the King","2003-12-17",201,"Peter Jackson","Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring."));
 		 arg0.getServletContext().setAttribute("notflix",notflix);
+		 
+		 notflix.addGebruiker(new Gebruiker("Peerhoofd", "", "Jopie", "nick", "test123"));
+		 notflix.addGebruiker(new Gebruiker("Test", "", "Johnny", "gebruiker", "Wachtwoord"));
+		 notflix.addGebruiker(new Gebruiker("Peerhoofd", "tussenvoegsel", "Jopie", "nick", "test123"));
 	}
 
 }
