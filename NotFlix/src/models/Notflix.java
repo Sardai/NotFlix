@@ -18,11 +18,13 @@ public class Notflix {
 	private final List<Gebruiker> gebruikers;
 	private final List<Movie> movies;
 	private final Map<Gebruiker,String> tokens; 
+	private final Map<Movie, Rating> ratings;
 	
 	public Notflix(){
 		movies = new ArrayList<>();
 		tokens = new HashMap<>();
 		gebruikers = new ArrayList<>();
+		ratings = new HashMap<>();
 	}
 	
 	public List<Gebruiker> getGebruikers(){
@@ -68,7 +70,7 @@ public class Notflix {
 	public void addGebruiker(Gebruiker gebruiker){
 		gebruikers.add(gebruiker);
 	}
-	
+		
 	public String createToken(String nickname,String password){
 		 for (Gebruiker gebruiker : gebruikers) {
 			if(gebruiker.getNickname().equals(nickname) && gebruiker.getWachtwoord().equals(password)){
