@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package models;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author chris
+ *
+ */
+public class Notflix {
+
+	private List<Movie> movies;
+	
+	public Notflix(){
+		movies = new ArrayList<>();
+	}
+	
+}

@@ -1,0 +1,37 @@
+/**
+ * 
+ */
+package models;
+
+/**
+ * @author chris
+ *
+ */
+public class Movie {
+	
+	private int id;
+	private String imdbId;
+	private String titel;
+	private String datum;
+	private int lengte;
+	private String regisseur;
+	private String beschrijving;
+	
+	private static int lastId;
+
+	public Movie(String imdbId, String titel, String datum, int lengte, String regisseur, String beschrijving) {
+		lastId++;
+		this.id = lastId;
+		this.imdbId = imdbId;
+		this.titel = titel;
+		this.datum = datum;
+		this.lengte = lengte;
+		this.regisseur = regisseur;
+		this.beschrijving = beschrijving;
+	}
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,34 @@
+import java.util.List;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+import models.Movie;
+import models.Notflix;
+
+/**
+ * 
+ */
+
+/**
+ * @author chris
+ *
+ */
+public class NotflixServletContextListener implements ServletContextListener{
+
+	@Override
+	public void contextDestroyed(ServletContextEvent arg0) {
+		 
+	}
+
+	@Override
+	public void contextInitialized(ServletContextEvent arg0) {
+		 Notflix notflix = new Notflix();
+		 
+		 List<Movie> movies = notflix.getMovies();
+		 movies.add(new Movie("tt1392190", "Mad Max: Fury Road", "2015-06-12", 120, "George Miller", "A woman rebels against a tyrannical ruler in post apocalyptic Australia in search for her homeland with the help of a group of female prisoners, a psychotic worshiper, and a drifter named Max."));
+		 movies.add(new Movie("tt1340138", "Terminator Genisys","2015-07-01",126,"Alan Taylor","When John Connor, leader of the human resistance, sends Sgt. Kyle Reese back to 1984 to protect Sarah Connor and safeguard the future, an unexpected turn of events creates a fractured timeline."))
+		 arg0.getServletContext().setAttribute("notflix",notflix);
+	}
+
+}

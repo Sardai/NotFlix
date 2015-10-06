@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+package resource;
+
+import javax.ws.rs.Path;
+
+/**
+ * @author chris
+ *
+ */
+@GET
+@Path("/movies")
+public class MoviesResource {
+	
+}
