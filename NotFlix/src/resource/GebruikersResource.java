@@ -3,7 +3,10 @@ package resource;
 import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -37,6 +40,18 @@ public class GebruikersResource {
 			}
 		}
 		return new GebruikersModel();
+	}
+	
+	@POST
+	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
+	public void addGebruiker(@FormParam("achternaam") String achternaam, @FormParam("tussenvoegsel") String tussenvoegsel,
+			@FormParam("voornaam") String voornaam, @FormParam("nickname") String nickname, @FormParam("wachtwoord") String wachtwoord){
+		
+		GebruikersModel newGebruiker = new GebruikersModel(achternaam, tussenvoegsel, voornaam, nickname, wachtwoord);
+		Notflix model = (Notflix) context.getAttribute("notflix");
+		
+		model.addGebruiker(newGebruiker);
+		
 	}
 
 }
