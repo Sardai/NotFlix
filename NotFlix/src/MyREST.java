@@ -5,6 +5,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class MyREST extends ResourceConfig {
 	public MyREST() {
 		packages("resource");
+		register(CORSResponseFilter.class);
 		register(com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider.class);
 	}
 }

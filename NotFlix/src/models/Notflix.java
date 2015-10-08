@@ -92,7 +92,7 @@ public class Notflix {
 		Random random = new Random();
 		for (int i = 0; i < tokenLength; i++) {
 			token+= chars.charAt(random.nextInt(chars.length()));
-		}
+		}		
 		
 		return token;
 	}
