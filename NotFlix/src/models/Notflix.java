@@ -30,6 +30,15 @@ public class Notflix {
 	public List<Gebruiker> getGebruikers(){
 		return gebruikers;
 	}
+	
+	public Gebruiker getGebruiker(String token){
+		for(Map.Entry<Gebruiker, String> map : tokens.entrySet()){
+			if(map.getValue().equals(token)){
+				return map.getKey();
+			}
+		}
+		return null;
+	}
 		
 	public List<Movie> getMovies(){
 		return movies;
@@ -69,6 +78,10 @@ public class Notflix {
 	
 	public void addGebruiker(Gebruiker gebruiker){
 		gebruikers.add(gebruiker);
+	}
+	
+	public void addRating(Movie movie, Rating rating){
+		ratings.put(movie, rating);
 	}
 		
 	public String createToken(String nickname,String password){
