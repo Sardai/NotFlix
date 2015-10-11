@@ -52,6 +52,18 @@ public class Notflix {
 		return null;
 	}
 	
+	public boolean userExists(String nickname){
+		boolean result = false;
+		
+		for(Gebruiker g : gebruikers){
+			if(g.getNickname().equals(nickname)){
+				result = true;
+			}
+		}
+		
+		return result;
+	}
+	
 	/**
 	 * Get all movies.
 	 * @return the list with movies

@@ -93,11 +93,12 @@ public class GebruikersResource {
 	public void addGebruiker(@FormParam("achternaam") String achternaam, @FormParam("tussenvoegsel") String tussenvoegsel,
 			@FormParam("voornaam") String voornaam, @FormParam("nickname") String nickname, @FormParam("wachtwoord") String wachtwoord){
 		
-		Gebruiker newGebruiker = new Gebruiker(achternaam, tussenvoegsel, voornaam, nickname, wachtwoord);
 		Notflix model = (Notflix) context.getAttribute("notflix");
 		
-		model.addGebruiker(newGebruiker);
-		
+		if(!model.userExists(nickname)){
+			Gebruiker newGebruiker = new Gebruiker(achternaam, tussenvoegsel, voornaam, nickname, wachtwoord);
+			model.addGebruiker(newGebruiker);
+		}		
 	}
 
 }
