@@ -1,0 +1,55 @@
+ .movie {
+	position: relative;
+}
+
+ 
+
+.info{
+	position: absolute;
+	top:0;
+	left:0;
+	background: rgba(0,0,0,.8);
+	color:white;
+	margin:2px;
+	pointer-events:none;
+	height: 100%;
+
+}
+
+.movies{
+	float:left;
+}
+
+body .movie{
+	padding:2px;
+}
+
+.info p, .info h2{
+	padding: 0 9px;
+}
+
+	.movie img{
+		width:100%;
+		height:auto;
+	}
+
+@media (min-width: 992px) {
+	.movie img{
+	width:100%;
+		height:auto;
+	}}
+
+@media (min-width:1200px) {  
+.movie img{
+	height:440px;
+	width: 300px;
+}
+ }
+
+ body .navbar-brand{
+ 	padding:10px 20px;
+ }
+
+ body .navbar-brand img{
+ 	width:115px;
+ }

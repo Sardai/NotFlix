@@ -45,6 +45,8 @@ public class GebruikersResource {
 	
 	@POST
 	@Path("/token")
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	public Response getToken(@FormParam("nickname") String nickname,@FormParam("password") String password){
 		Notflix model = (Notflix) context.getAttribute("notflix");
 		String token = model.createToken(nickname, password);
