@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -191,6 +190,7 @@ public class Notflix {
 				ArrayList<Rating> ratingsList = map.getValue();
 				ratingsList.add(rating);
 				map.setValue(ratingsList);
+				calculateAverageRating(movie, ratingsList);
 				return;
 			}
 		}
@@ -198,6 +198,7 @@ public class Notflix {
 		ArrayList<Rating> newRatingList = new ArrayList<Rating>();
 		newRatingList.add(rating);		
 		ratings.put(movie, newRatingList);
+		calculateAverageRating(movie, newRatingList);
 	}
 	
 	public void updateRating(String imdbId, String token, int sterren){
@@ -210,6 +211,8 @@ public class Notflix {
 				ratingsList.remove(getRatingFromList(ratingsList, gebruiker));
 				ratingsList.add(new Rating(sterren, gebruiker, map.getKey()));
 				map.setValue(ratingsList);
+				calculateAverageRating(map.getKey(),ratingsList);
+				return;
 			}
 		}		
 	}
@@ -234,6 +237,21 @@ public class Notflix {
 			}
 		}
 		 return null;
+	}
+	
+	/**
+	 * Calculates average rating and updates movie with the value/ 
+	 * @param movie the movie
+	 * @param ratings the ratings which belongs to the movie.
+	 */
+	private void calculateAverageRating(Movie movie,List<Rating> ratings){
+		double sum = 0;
+		for (Rating rating : ratings) {
+			sum += rating.getSterren();
+		}
+		double average = sum/ratings.size();
+		average=Math.floor(average*10) / 10;
+		movie.setAverageRating(average);
 	}
 	
 	 
