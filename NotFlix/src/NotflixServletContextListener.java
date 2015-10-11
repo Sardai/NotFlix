@@ -14,8 +14,8 @@ import models.Rating;
  */
 
 /**
- * @author chris
- *
+ * @author chris,viradj
+ *	servlet context listener for notflix.
  */
 @WebListener
 public class NotflixServletContextListener implements ServletContextListener{

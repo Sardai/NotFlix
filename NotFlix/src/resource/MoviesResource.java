@@ -22,7 +22,7 @@ import models.Notflix;
 
 /**
  * @author chris
- *
+ *	REST class for request for movies.
  */
 
 @Path("/movies")
@@ -31,6 +31,9 @@ public class MoviesResource {
 	@Context
 	private ServletContext context; 
 	
+	/**	
+	 * @return all movies
+	 */
 	@GET
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
 	public List<Movie> getMovies(){
@@ -38,6 +41,11 @@ public class MoviesResource {
 		return model.getMovies();
 	}
 	
+	/**
+	 * get movie from imdb id.
+	 * @param id the imdb id of the movie
+	 * @return the movie
+	 */
 	@GET
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
@@ -46,6 +54,11 @@ public class MoviesResource {
 		return model.getMovie(id);
 	}
 	
+	/**
+	 * get movies with title.
+	 * @param title the title of the movie or a part
+	 * @return the movies
+	 */
 	@GET
 	@Path("/title/{title}")
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})	
@@ -55,6 +68,11 @@ public class MoviesResource {
 		 return movies;
 	}
 	
+	/**
+	 * Get movies from director.
+	 * @param director the director of the movies
+	 * @return the movies
+	 */
 	@GET
 	@Path("/director/{director}")
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})	

@@ -8,10 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 /**
- * @author chris
- *
+ * @author chris,viradj
+ * class wich contains users, movies and tokens
  */
 public class Notflix {
 	
@@ -20,6 +21,9 @@ public class Notflix {
 	private final Map<Gebruiker,String> tokens; 
 	private final Map<Movie, ArrayList<Rating>> ratings;
 	
+	/**
+	 * Initiaze a new instance of notflix.
+	 */
 	public Notflix(){
 		movies = new ArrayList<>();
 		tokens = new HashMap<>();
@@ -27,10 +31,19 @@ public class Notflix {
 		ratings = new HashMap<>();
 	}
 	
+	/**
+	 * Get all users.
+	 * @return the list with users.
+	 */
 	public List<Gebruiker> getGebruikers(){
 		return gebruikers;
 	}
 	
+	/**
+	 * Get a user from token
+	 * @param token token which is linked with user.
+	 * @return
+	 */
 	public Gebruiker getGebruiker(String token){
 		for(Map.Entry<Gebruiker, String> map : tokens.entrySet()){
 			if(map.getValue().equals(token)){
@@ -39,11 +52,20 @@ public class Notflix {
 		}
 		return null;
 	}
-		
+	
+	/**
+	 * Get all movies.
+	 * @return the list with movies
+	 */
 	public List<Movie> getMovies(){
 		return movies;
 	}
 	
+	/**
+	 * Get all movies with a specific title.
+	 * @param title the titel of the movie
+	 * @return all movies with the title of a part of the title
+	 */
 	public List<Movie> getMovies(String title){
 		List<Movie> found = new ArrayList<>();
 		for (Movie movie : movies) {
@@ -54,6 +76,11 @@ public class Notflix {
 		return found;
 	}
 	
+	/**
+	 * Get all movies from a certain director.
+	 * @param director the director of the movies
+	 * @return the list of all movies with a certain director
+	 */
 	public List<Movie> getMoviesFromDirector(String director){
 		List<Movie> found = new ArrayList<>();
 		for (Movie movie : movies) {
@@ -64,6 +91,11 @@ public class Notflix {
 		return found;
 	}
 	
+	/**
+	 * Get movie with imdb id.
+	 * @param imdbId the id
+	 * @return the movie
+	 */
 	public Movie getMovie(String imdbId){
 		if(!imdbId.startsWith("tt")){
 			imdbId = "tt"+imdbId;
@@ -76,6 +108,7 @@ public class Notflix {
 		return null;
 	}
 	
+ 
 	public Rating getRating(String imdbId, String token){
 		Gebruiker gebruiker = getGebruiker(token);
 		
@@ -87,6 +120,7 @@ public class Notflix {
 		
 		return null;
 	}
+	
 	
 	public Rating getRatingFromList(ArrayList<Rating> ratings, Gebruiker gebruiker){
 		
@@ -112,6 +146,11 @@ public class Notflix {
 		return result;
 	}
 	
+	/**
+	 * Removes rating from movie.
+	 * @param imdbId the id of the movie
+	 * @param token the token of the user
+	 */
 	public void deleteRating(String imdbId, String token){
 		Gebruiker gebruiker = getGebruiker(token);
 		
@@ -124,6 +163,10 @@ public class Notflix {
 		}
 	}
 	
+	/**
+	 * Add user to user list.
+	 * @param gebruiker the user
+	 */
 	public void addGebruiker(Gebruiker gebruiker){
 		gebruikers.add(gebruiker);
 	}
@@ -158,6 +201,12 @@ public class Notflix {
 		}		
 	}
 		
+	/**
+	 * Create a token for user.
+	 * @param nickname the nickname of the user
+	 * @param password the password of the user
+	 * @return the token
+	 */
 	public String createToken(String nickname,String password){
 		 for (Gebruiker gebruiker : gebruikers) {
 			if(gebruiker.getNickname().equals(nickname) && gebruiker.getWachtwoord().equals(password)){
@@ -166,7 +215,7 @@ public class Notflix {
 					return tokens.get(gebruiker);
 				}
 				
-				String token = generateToken();
+				String token = UUID.randomUUID().toString();
 				tokens.put(gebruiker, token);
 				return token;
 			}
@@ -174,16 +223,6 @@ public class Notflix {
 		 return null;
 	}
 	
-	private String generateToken(){
-		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-		String token = "";
-		int tokenLength = 48;
-		Random random = new Random();
-		for (int i = 0; i < tokenLength; i++) {
-			token+= chars.charAt(random.nextInt(chars.length()));
-		}		
-		
-		return token;
-	}
+	 
 	
 }
