@@ -61,6 +61,7 @@ public class RatingsResource {
 	
 	@PUT
 	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public Rating putRating(@FormParam("sterren") int sterren, @HeaderParam("token") String token, @FormParam("imdbId") String movieId){
 		
 		Notflix model = (Notflix) context.getAttribute("notflix");
