@@ -22,7 +22,7 @@ public class Movie {
 	private int lengte;
 	private String regisseur;
 	private String beschrijving;
-	
+	private double averageRating;
 	private static int lastId;
 
 	public Movie(){
@@ -134,7 +134,32 @@ public class Movie {
 	public void setId(int id) {
 		this.id = id;
 	}
+	/**
+	 * @return the averageRating
+	 */
+	public double getAverageRating() {
+		return averageRating;
+	}
+	/**
+	 * @param averageRating the averageRating to set
+	 */
+	public void setAverageRating(double averageRating) {
+		this.averageRating = averageRating;
+	}
+	/**
+	 * @return the lastId
+	 */
+	public static int getLastId() {
+		return lastId;
+	}
+	/**
+	 * @param lastId the lastId to set
+	 */
+	public static void setLastId(int lastId) {
+		Movie.lastId = lastId;
+	}
 
+	
 	
  
 	

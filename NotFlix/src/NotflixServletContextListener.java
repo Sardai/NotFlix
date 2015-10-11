@@ -53,6 +53,8 @@ public class NotflixServletContextListener implements ServletContextListener{
 		 notflix.addGebruiker(geb3);
 		 
 		 notflix.addRating(notflix.getMovie("tt1392190"), new Rating(5, geb1, notflix.getMovie("tt1392190")));
+		 notflix.addRating(notflix.getMovie("tt1392190"), new Rating(2, geb1, notflix.getMovie("tt1392190")));
+		 notflix.addRating(notflix.getMovie("tt1392190"), new Rating(3, geb1, notflix.getMovie("tt1392190")));
 		 notflix.addRating(notflix.getMovie("tt0478970"), new Rating(5, geb2, notflix.getMovie("tt0478970")));
 		 notflix.addRating(notflix.getMovie("tt1877832"), new Rating(5, geb3, notflix.getMovie("tt1877832")));
 	}
