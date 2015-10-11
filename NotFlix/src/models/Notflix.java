@@ -107,7 +107,12 @@ public class Notflix {
 		return null;
 	}
 	
- 
+	/**
+	 * Return the Rating of a movie by specified user
+	 * @param imdbId
+	 * @param token
+	 * @return the rating of the movie in the parameters by the user in the parameters
+	 */
 	public Rating getRating(String imdbId, String token){
 		Gebruiker gebruiker = getGebruiker(token);
 		
@@ -120,7 +125,12 @@ public class Notflix {
 		return null;
 	}
 	
-	
+	/**
+	 * Auxilary method to get a Rating from an ArrayList of Ratings
+	 * @param ratings
+	 * @param gebruiker
+	 * @return The Rating from an User if it exists within the given List
+	 */
 	public Rating getRatingFromList(ArrayList<Rating> ratings, Gebruiker gebruiker){
 		
 		for(Rating r : ratings){
@@ -132,6 +142,12 @@ public class Notflix {
 		return null;
 	}
 	
+	/**
+	 * Auxilary method to check if the List has a Rating that belongs to the User
+	 * @param ratings
+	 * @param gebruiker
+	 * @return true if User exists in the List
+	 */
 	public boolean hasGebruiker(ArrayList<Rating> ratings, Gebruiker gebruiker){
 		
 		boolean result = false;
@@ -170,6 +186,12 @@ public class Notflix {
 		gebruikers.add(gebruiker);
 	}
 	
+	/**
+	 * Auxilary method that checks has a rating for a specific movie
+	 * @param token
+	 * @param imdbId
+	 * @return true if the User has rated the specific movie
+	 */
 	public boolean hasRating(String token, String imdbId){
 		
 		boolean result = false;
@@ -183,6 +205,11 @@ public class Notflix {
 		return result;
 	}
 	
+	/**
+	 * Adds a new rating
+	 * @param movie
+	 * @param rating
+	 */
 	public void addRating(Movie movie, Rating rating){
 		
 		for(Map.Entry<Movie, ArrayList<Rating>> map : ratings.entrySet() ){
@@ -201,6 +228,12 @@ public class Notflix {
 		calculateAverageRating(movie, newRatingList);
 	}
 	
+	/**
+	 * Updates an existing rating
+	 * @param imdbId
+	 * @param token
+	 * @param sterren
+	 */
 	public void updateRating(String imdbId, String token, int sterren){
 		
 		Gebruiker gebruiker = getGebruiker(token);
