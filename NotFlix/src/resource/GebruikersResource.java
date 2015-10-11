@@ -17,12 +17,22 @@ import javax.ws.rs.core.Response;
 import models.Gebruiker;
 import models.Notflix;
 
+/**
+ * 
+ * @author Viradj
+ *	REST class for requests for users
+ */
+
 @Path("/gebruikers")
 public class GebruikersResource {
 	
 	@Context
 	private ServletContext context;
 	
+	/**
+	 * 
+	 * @return all users
+	 */
 	@GET
 	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public List<Gebruiker> getGebruikers(){
@@ -30,6 +40,11 @@ public class GebruikersResource {
 		return model.getGebruikers();
 	}
 	
+	/**
+	 * 
+	 * @param nickname
+	 * @return user specifies by nickname
+	 */
 	@GET
 	@Path("{nickname}")
 	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -43,6 +58,12 @@ public class GebruikersResource {
 		return new Gebruiker();
 	}
 	
+	/**
+	 * 
+	 * @param nickname
+	 * @param password
+	 * @return Token for requested uder
+	 */
 	@POST
 	@Path("/token")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -59,6 +80,14 @@ public class GebruikersResource {
 		
 	}
 	
+	/**
+	 * Creates new User
+	 * @param achternaam
+	 * @param tussenvoegsel
+	 * @param voornaam
+	 * @param nickname
+	 * @param wachtwoord
+	 */
 	@POST
 	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	public void addGebruiker(@FormParam("achternaam") String achternaam, @FormParam("tussenvoegsel") String tussenvoegsel,

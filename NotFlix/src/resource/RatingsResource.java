@@ -20,12 +20,24 @@ import models.Movie;
 import models.Notflix;
 import models.Rating;
 
+/**
+ * 
+ * @author Viradj
+ *	REST class for requests for Ratings
+ */
+
 @Path("/ratings")
 public class RatingsResource {
 	
 	@Context
 	private ServletContext context;
 	
+	/**
+	 * Creates new Rating
+	 * @param sterren
+	 * @param token
+	 * @param movieId
+	 */
 	@POST
 	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	public Response addRating(@FormParam("sterren") int sterren, @HeaderParam("token") String token, @FormParam("imdbId") String movieId ){
@@ -47,6 +59,12 @@ public class RatingsResource {
 		return Response.status(Response.Status.CONFLICT).build();
 	}
 	
+	/**
+	 * 
+	 * @param imdbId
+	 * @param token
+	 * @return Rating of specified movie by authorized user
+	 */
 	@GET
 	@Path("{imdbId}")
 	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -60,6 +78,11 @@ public class RatingsResource {
 		return Response.ok().entity(model.getRating(imdbId, token)).build();
 	}
 	
+	/**
+	 * Deletes Rating
+	 * @param movie
+	 * @param token
+	 */
 	@DELETE
 	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	public Response deleteRating(@FormParam("imdbId") String movie, @HeaderParam("token") String token){
@@ -77,8 +100,16 @@ public class RatingsResource {
 		return Response.status(Response.Status.CONFLICT).build();
 	}
 	
+	/**
+	 * Updates an existing rating
+	 * @param sterren
+	 * @param token
+	 * @param movieId
+	 * @return the new updated rating
+	 */
 	@PUT
 	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public Response putRating(@FormParam("sterren") int sterren, @HeaderParam("token") String token, @FormParam("imdbId") String movieId){
 		
 		Notflix model = (Notflix) context.getAttribute("notflix");
