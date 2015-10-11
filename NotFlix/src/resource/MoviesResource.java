@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import models.Movie;
 import models.Notflix;
@@ -50,15 +51,17 @@ public class MoviesResource {
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})	
 	public List<Movie> getMoviesWithTitle(@PathParam("title") String title){
 		Notflix model = (Notflix)context.getAttribute("notflix");
-		return model.getMovies(title);
+		 List<Movie> movies = model.getMovies(title);		 
+		 return movies;
 	}
 	
 	@GET
-	@Path("/regisseur/{regisseur}")
+	@Path("/director/{director}")
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})	
-	public List<Movie> getMoviesFromDirector(@PathParam("regisseur") String director){
+	public List<Movie> getMoviesFromDirector(@PathParam("director") String director){
 		Notflix model = (Notflix)context.getAttribute("notflix");
-		return model.getMoviesFromDirector(director);
+		 List<Movie> movies = model.getMoviesFromDirector(director);		
+		return movies;
 	}
 	
 }
