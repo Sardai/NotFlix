@@ -44,9 +44,9 @@ public class NotflixServletContextListener implements ServletContextListener{
 		 movies.add(new Movie("tt0167260","The Lord of the Rings: The Return of the King","2003-12-17",201,"Peter Jackson","Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring."));
 		 arg0.getServletContext().setAttribute("notflix",notflix);
 		 
-		 Gebruiker geb1 = new Gebruiker("Peerhoofd", "", "Jopie", "nick", "test123") ;
+		 Gebruiker geb1 = new Gebruiker("Frielink", "", "Harm", "nick", "test123") ;
 		 Gebruiker geb2 = new Gebruiker("Test", "", "Johnny", "gebruiker", "Wachtwoord") ;
-		 Gebruiker geb3 = new Gebruiker("Peerhoofd", "tussenvoegsel", "Jopie", "nick", "test123") ;
+		 Gebruiker geb3 = new Gebruiker("Duipmans", "tussenvoegsel", "Evert", "bijnaam", "password") ;
 		 
 		 notflix.addGebruiker(geb1);
 		 notflix.addGebruiker(geb2);
