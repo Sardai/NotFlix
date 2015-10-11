@@ -58,6 +58,7 @@ public class GebruikersResource {
 		return Response.ok(token).build();
 		
 	}
+	
 	@POST
 	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	public void addGebruiker(@FormParam("achternaam") String achternaam, @FormParam("tussenvoegsel") String tussenvoegsel,
