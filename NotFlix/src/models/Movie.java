@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author chris
- *
+ *	The movie object with all information of a movie.
  */
 @XmlRootElement
 public class Movie {
@@ -28,7 +28,15 @@ public class Movie {
 	public Movie(){
 		
 	}
-	
+	/**
+	 * Create a new movie with all values and a new id. 
+	 * @param imdbId the id of the movie
+	 * @param titel the title of the movie
+	 * @param datum the date of the movie
+	 * @param lengte the length of the movie
+	 * @param regisseur the director of the movie
+	 * @param beschrijving the description of the movie
+	 */
 	public Movie(String imdbId, String titel, String datum, int lengte, String regisseur, String beschrijving) {
 		lastId++;
 		this.id = lastId;
@@ -42,60 +50,93 @@ public class Movie {
 
 	@JsonIgnore
 	@XmlTransient
+	/**
+	 * @return the id of the movie
+	 */
 	public int getId() {
 		return id;
 	}
-
-	
-
+	/**
+	 * @return the imdbId
+	 */
 	public String getImdbId() {
 		return imdbId;
 	}
-
-	public String getTitel() {
-		return titel;
-	}
-
-	public String getDatum() {
-		return datum;
-	}
-
-	public int getLengte() {
-		return lengte;
-	}
-
-	public String getRegisseur() {
-		return regisseur;
-	}
-
-	public String getBeschrijving() {
-		return beschrijving;
-	}
- 
+	/**
+	 * @param imdbId the imdbId to set
+	 */
 	public void setImdbId(String imdbId) {
 		this.imdbId = imdbId;
 	}
-
+	/**
+	 * @return the titel
+	 */
+	public String getTitel() {
+		return titel;
+	}
+	/**
+	 * @param titel the titel to set
+	 */
 	public void setTitel(String titel) {
 		this.titel = titel;
 	}
-
+	/**
+	 * @return the datum
+	 */
+	public String getDatum() {
+		return datum;
+	}
+	/**
+	 * @param datum the datum to set
+	 */
 	public void setDatum(String datum) {
 		this.datum = datum;
 	}
-
+	/**
+	 * @return the lengte
+	 */
+	public int getLengte() {
+		return lengte;
+	}
+	/**
+	 * @param lengte the lengte to set
+	 */
 	public void setLengte(int lengte) {
 		this.lengte = lengte;
 	}
-
+	/**
+	 * @return the regisseur
+	 */
+	public String getRegisseur() {
+		return regisseur;
+	}
+	/**
+	 * @param regisseur the regisseur to set
+	 */
 	public void setRegisseur(String regisseur) {
 		this.regisseur = regisseur;
 	}
-
+	/**
+	 * @return the beschrijving
+	 */
+	public String getBeschrijving() {
+		return beschrijving;
+	}
+	/**
+	 * @param beschrijving the beschrijving to set
+	 */
 	public void setBeschrijving(String beschrijving) {
 		this.beschrijving = beschrijving;
 	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	
+ 
 	
 	
 	
