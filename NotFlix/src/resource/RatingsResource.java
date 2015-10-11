@@ -31,11 +31,13 @@ public class RatingsResource {
 		
 		Notflix model = (Notflix) context.getAttribute("notflix");
 		
-		Gebruiker gebruiker = model.getGebruiker(token);
-		Movie movie = model.getMovie(movieId);		
-		Rating newRating = new Rating(sterren, gebruiker, movie);
-		
-		model.addRating(movie, newRating);
+		if(!model.hasRating(token, movieId)){
+			Gebruiker gebruiker = model.getGebruiker(token);
+			Movie movie = model.getMovie(movieId);		
+			Rating newRating = new Rating(sterren, gebruiker, movie);
+			
+			model.addRating(movie, newRating);
+		}		
 	}
 	
 	@GET

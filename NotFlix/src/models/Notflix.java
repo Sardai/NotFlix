@@ -128,6 +128,19 @@ public class Notflix {
 		gebruikers.add(gebruiker);
 	}
 	
+	public boolean hasRating(String token, String imdbId){
+		
+		boolean result = false;
+		
+		for(Map.Entry<Movie, ArrayList<Rating>> map : ratings.entrySet()){
+			if(map.getKey().getImdbId().equals(imdbId) && hasGebruiker(map.getValue(), getGebruiker(token)) ){
+				result = true;
+			}
+		}
+		
+		return result;
+	}
+	
 	public void addRating(Movie movie, Rating rating){
 		
 		for(Map.Entry<Movie, ArrayList<Rating>> map : ratings.entrySet() ){
