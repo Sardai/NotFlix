@@ -261,7 +261,21 @@ public class Notflix {
 			}
 		}		
 	}
-		
+	
+	/**
+	 * Checks if a token is valid.
+	 * @param token the token
+	 * @return if the token is valid
+	 */
+	public boolean hasToken(String token){
+		for(Map.Entry<Gebruiker,String> map : tokens.entrySet() ){
+			if(map.getValue().equals(token)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Create a token for user.
 	 * @param nickname the nickname of the user
