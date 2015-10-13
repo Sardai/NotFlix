@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="notflix">
+<head>
+	<meta charset="UTF-8">
+	<title>Notflix</title>
+	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/cyborg/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<link rel="icon" href="favicon.png">
+</head>
+<body ng-controller="movieCtrl">
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img src="notflix.png" alt="Title image" />	</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse" >
+				<ul class="nav navbar-nav" >
+					<li><a href="#home">Home</a></li>
+					<li ng-hide="user.token==null"><a href="#users">Users</a></li>
+				</ul>
+				<form name="loginForm" class="navbar-form navbar-right" ng-show="user.token==null">
+					<div class="form-group">
+						<input type="text" ng-model="user.username" placeholder="Nickname" class="form-control"
+						ng-class="{true:'error',false:''}[(loginForm.$submitted && !user.username.length)]"
+						>
+					</div>
+					<div class="form-group">
+						<input type="password" ng-model="user.password" placeholder="Password" class="form-control"
+						ng-class="{true:'error',false:''}[loginForm.$submitted && !user.password.length]"
+						>
+					</div>
+					<button type="submit" class="btn btn-success" ng-click="signin()">Sign in</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right" ng-hide="user.token==null">
+					<li><a href="" ng-click="logout()">Logout</a></li>
+				</ul>
+			</div><!--/.navbar-collapse -->
+		</div>
+	</nav>
+
+
+
+	<div class="container-fluid" >
+		<div class="movies">
+			<!-- <div class="row"  ng-repeat="i in columns track by $index"> -->
+			<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 movie" ng-repeat="movie in movies" data-imdb_id="{{movie.imdbId}}"  hover>
+				<img alt="image {{movie.titel}}" class="img-responsive"/>
+				<div class="info" style="display:none">
+					<h2>{{movie.titel}}</h2>
+					<p>{{movie.datum}} {{movie.regisseur}} {{movie.lengte}}m</p>		
+					<div class="rating">
+						<span class="fa fa-star-half star left"
+						ng:class="{true:'red', false:''}[movie.averageRating>4.5]"
+						ng-click="rate()"
+						></span>
+						<span class="fa fa-star-half star"
+						ng:class="{true:'red', false:''}[movie.averageRating>4]"
+						ng-click="rate()"
+						></span>
+						<span class="fa fa-star-half star left"
+						ng:class="{true:'red', false:''}[movie.averageRating>3.5]"
+						ng-click="rate()"
+						></span>
+						<span class="fa fa-star-half star"
+						ng:class="{true:'red', false:''}[movie.averageRating>3]"
+						ng-click="rate()"
+						></span>
+						<span class="fa fa-star-half star left"
+						ng:class="{true:'red', false:''}[movie.averageRating>2.5]"
+						ng-click="rate()"
+						></span>
+						<span class="fa fa-star-half star"
+						ng:class="{true:'red', false:''}[movie.averageRating>2]"
+						ng-click="rate()"
+						></span>						
+						<span class="fa fa-star-half star left"
+						ng:class="{true:'red', false:''}[movie.averageRating>1.5]"
+						ng-click="rate()"
+						></span>
+						<span class="fa fa-star-half star"
+						ng:class="{true:'red', false:''}[movie.averageRating>1]"
+						ng-click="rate()"
+						></span>
+						<span class="fa fa-star-half star left"
+						ng:class="{true:'red', false:''}[movie.averageRating>0.5]"
+						ng-click="rate()"
+						></span>
+						<span class="fa fa-star-half star"
+						ng:class="{true:'red', false:''}[movie.averageRating>0]"
+						ng-click="rate()"
+						></span>
+					</div>
+					<p>{{movie.beschrijving}}</p>
+				</div>
+				<!-- </div>		  -->
+			</div>
+		</div>
+		<hr>
+
+		<footer>
+			<p>&copy; Notflix 2015</p>
+		</footer>
+	</div> <!-- /container -->
+
+	<!-- onderaan de pagina geplaatst zodat de pagina sneller laad -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-route.min.js"></script>
+	<div class="alert alert-danger login toast" role="alert"><h4>You need to login!</h4></div>
+	<div class="alert alert-danger 401 toast" role="alert"><h4>Username and/or password incorrect!</h4></div>
+	<div class="alert alert-success logged-in toast" role="alert"><h4>You have logged in!</h4></div>
+	<div class="alert alert-info logged-out toast" role="alert"><h4>You have logged out!</h4></div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+	var domain = "http://localhost:8080";
+	var rootUrl = domain+"/NotFlix/api/";
+
+	var app = angular.module('notflix', [])   
+
+
+	var config = {headers:  {
+		'Accept': 'application/json',
+	}
+};
+
+
+app.controller('movieCtrl', 
+	function ($scope, $http) {
+		$scope.user = {
+			username:null,
+			password:null,
+			token:null
+		};
+		var userObj = localStorage.getItem("user");
+		if(userObj != "null"){
+			console.dir(userObj);
+			$scope.user = JSON.parse(userObj);
+		}
+
+		$scope.signin = function(){
+			if($scope.user.username == "" || $scope.user.password == ""){
+				return;
+			}
+			$.ajax({
+				type:"POST",
+				url:rootUrl+"gebruikers/token",
+				contentType:"application/json",
+				data:JSON.stringify({
+					nickname:$scope.user.username,
+					wachtwoord:$scope.user.password
+				}),
+				statusCode: {
+					401:function() {
+						showToast(".401");
+					}
+				},
+				success:function(response){
+					$scope.user.token=response;
+					$scope.user.password = null;
+					localStorage.setItem("user",JSON.stringify($scope.user));
+					showToast(".logged-in");
+					$scope.$digest();
+					console.log($scope.user.token);
+				}
+			});
+		}
+		$scope.logout = function(){
+			localStorage.setItem("user",null);
+			$scope.user.token = null;
+			$scope.user.username = null;
+			showToast(".logged-out")
+		}
+
+		$scope.rate = function(){
+			console.log($scope.user);
+			if($scope.user.token == null){
+				showToast(".login");
+			}
+		}
+
+
+		$http.get(rootUrl+"movies",config)
+		.success(function (response) {
+			$scope.movies = response;
+			$scope.columns = new Array(Math.ceil(response.length/4));	
+			$scope.amountOfColumns = 6;
+
+			for (var i = 0; i < response.length; i++) {
+				var item = response[i];
+
+				getPoster(item.imdbId);
+			};
+
+			console.log(response);
+			getPoster();		
+		});	
+	});
+
+
+app.directive('hover', function(){
+
+	return function(scope, element, attrs){
+
+		element.hover( function (e) {
+			e.stopPropagation();
+			$(this).find(".info").fadeIn("slow");
+
+		},function(e){
+			e.stopPropagation();
+			$(".info").fadeOut("slow",function(){
+				$(this).stop();
+			});
+		});
+
+	};
+
+});
+
+
+app.filter('slice', function() {
+	return function(arr, start, end) {
+		return arr.slice(start, end);
+	};
+});
+
+function getPoster(imdbId){
+	$.ajax({
+		url:"http://www.omdbapi.com/?i="+imdbId+"&plot=short&r=json",
+		success:function(data){
+			$("[data-imdb_id="+imdbId+"] img").attr("src",data.Poster);
+		}
+	});
+}
+
+function showToast(selector){
+	$(".alert"+selector).fadeIn("slow",function(){
+		$(this).delay( 1200 ).fadeOut("slow");	
+	});
+}
+
+</script>
