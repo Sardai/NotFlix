@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Rating {
 	
-	private int sterren;
+	private double sterren;
 	private Gebruiker gebruiker;
 	private Movie movie;
 	
@@ -13,13 +13,13 @@ public class Rating {
 		
 	}
 	
-	public Rating(int sterren, Gebruiker gebruiker, Movie movie){
+	public Rating(double sterren, Gebruiker gebruiker, Movie movie){
 		this.sterren = sterren;
 		this.gebruiker = gebruiker;
 		this.movie = movie;
 	}
 	
-	public int getSterren(){
+	public double getSterren(){
 		return sterren;
 	}
 	

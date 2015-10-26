@@ -59,43 +59,43 @@
 					<div class="rating">
 						<span class="fa fa-star-half star left"
 						ng:class="{true:'red', false:''}[movie.averageRating>4.5]"
-						ng-click="rate()"
+						ng-click="rate(5,movie.imdbId)"
 						></span>
 						<span class="fa fa-star-half star"
 						ng:class="{true:'red', false:''}[movie.averageRating>4]"
-						ng-click="rate()"
+						ng-click="rate(4.5,{{movie.imdbId}})"
 						></span>
 						<span class="fa fa-star-half star left"
 						ng:class="{true:'red', false:''}[movie.averageRating>3.5]"
-						ng-click="rate()"
+						ng-click="rate(4,{{movie.imdbId}})"
 						></span>
 						<span class="fa fa-star-half star"
 						ng:class="{true:'red', false:''}[movie.averageRating>3]"
-						ng-click="rate()"
+						ng-click="rate(3.5,{{movie.imdbId}})"
 						></span>
 						<span class="fa fa-star-half star left"
 						ng:class="{true:'red', false:''}[movie.averageRating>2.5]"
-						ng-click="rate()"
+						ng-click="rate(3,{{movie.imdbId}})"
 						></span>
 						<span class="fa fa-star-half star"
 						ng:class="{true:'red', false:''}[movie.averageRating>2]"
-						ng-click="rate()"
+						ng-click="rate(2.5,{{movie.imdbId}})"
 						></span>						
 						<span class="fa fa-star-half star left"
 						ng:class="{true:'red', false:''}[movie.averageRating>1.5]"
-						ng-click="rate()"
+						ng-click="rate(2,{{movie.imdbId}})"
 						></span>
 						<span class="fa fa-star-half star"
 						ng:class="{true:'red', false:''}[movie.averageRating>1]"
-						ng-click="rate()"
+						ng-click="rate(1.5,{{movie.imdbId}})"
 						></span>
 						<span class="fa fa-star-half star left"
 						ng:class="{true:'red', false:''}[movie.averageRating>0.5]"
-						ng-click="rate()"
+						ng-click="rate(1,{{movie.imdbId}})"
 						></span>
 						<span class="fa fa-star-half star"
 						ng:class="{true:'red', false:''}[movie.averageRating>0]"
-						ng-click="rate()"
+						ng-click="rate(0.5,{{movie.imdbId}})"
 						></span>
 					</div>
 					<p>{{movie.beschrijving}}</p>
@@ -183,11 +183,10 @@ app.controller('movieCtrl',
 			showToast(".logged-out")
 		}
 
-		$scope.rate = function(){
-			console.log($scope.user);
-			if($scope.user.token == null){
-				showToast(".login");
-			}
+		$scope.rate = function(rating,imdbId){
+			console.log(rating);
+			console.log(imdb)
+			
 		}
 
 
@@ -219,7 +218,7 @@ app.directive('hover', function(){
 
 		},function(e){
 			e.stopPropagation();
-			$(".info").fadeOut("slow",function(){
+			$("<div class='info'></div>").fadeOut("slow",function(){
 				$(this).stop();
 			});
 		});
@@ -242,6 +241,22 @@ function getPoster(imdbId){
 			$("[data-imdb_id="+imdbId+"] img").attr("src",data.Poster);
 		}
 	});
+}
+
+function rate(rating,movieId){
+	if($scope.user == null || $scope.user.token  == null){
+		showToast(".login");
+	}else{
+		$.ajax({
+			url:rootUrl+"rating",
+			type:"POST",
+			data:{
+				sterren:rating,
+				token: $scope.user.token,
+				movieId:movieId
+			}
+		});
+	}
 }
 
 function showToast(selector){

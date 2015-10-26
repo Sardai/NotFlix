@@ -40,7 +40,7 @@ public class RatingsResource {
 	 */
 	@POST
 	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
-	public Response addRating(@FormParam("sterren") int sterren, @HeaderParam("token") String token, @FormParam("imdbId") String movieId ){
+	public Response addRating(@FormParam("sterren") double sterren, @HeaderParam("token") String token, @FormParam("imdbId") String movieId ){
 	
 		Notflix model = (Notflix) context.getAttribute("notflix");
 		
