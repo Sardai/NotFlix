@@ -52,6 +52,11 @@ public class Notflix {
 		return null;
 	}
 	
+	/**
+	 * Auxilary method to check if an User already exists
+	 * @param nickname
+	 * @return true if the user already exists
+	 */
 	public boolean userExists(String nickname){
 		boolean result = false;
 		

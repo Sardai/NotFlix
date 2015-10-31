@@ -118,3 +118,7 @@ transform: scale(-1, 1);
  .error{
  	border:2px solid red; 	
  }
+
+#user-table{
+    width: 50%;   
+}

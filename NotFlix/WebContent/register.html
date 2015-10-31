@@ -46,23 +46,13 @@
 		</div>
 	</nav>
     
-    <table id="user-table" class="table table-bordered">
-        <thead>
-            <tr><th>Nickname</th><th>Voornaam</th><th>Tussenvoegsel</th><th>Achternaam</th></tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    
-    <input type="button" value="Add user">
-    
-    <form id="new-user" action="" method="post">
+    <form action="http://localhost:8080/NotFlix/api/gebruikers" method="post">
         <table>
             <thead>
                 <tr><th>Nickname</th><th>Voornaam</th><th>Tussenvoegsel</th><th>Achternaam</th><th>Wachtwoord</th></tr>
             </thead>
             <tbody>
-                <tr><td><input type="text" name="nickname"></td><td><input type="text" name="voornaam"></td><td><input type="text" name="tussenvoegsel"></td><td><input type="text" name="achternaam"></td><td><input type="password" name="password"></td></tr>
+                <tr><td><input type="text" name="nickname"></td><td><input type="text" name="voornaam"></td><td><input type="text" name="tussenvoegsel"></td><td><input type="text" name="achternaam"></td><td><input type="password" name="wachtwoord"></td></tr>
             </tbody>
         </table>
         <input type=submit value="Create user">
