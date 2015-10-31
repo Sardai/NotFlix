@@ -190,7 +190,7 @@ public class Notflix {
 			if(map.getKey().getImdbId().equals(imdbId) && hasGebruiker(map.getValue(), gebruiker)){
 				ArrayList<Rating> ratingsList = map.getValue();
 				ratingsList.remove(getRatingFromList(ratingsList, gebruiker));
-				map.setValue(ratingsList);
+				calculateAverageRating(map.getKey(), ratingsList);
 			}
 		}
 	}
@@ -251,7 +251,7 @@ public class Notflix {
 	 * @param token
 	 * @param sterren
 	 */
-	public void updateRating(String imdbId, String token, int sterren){
+	public void updateRating(String imdbId, String token, double sterren){
 		
 		Gebruiker gebruiker = getGebruiker(token);
 		
