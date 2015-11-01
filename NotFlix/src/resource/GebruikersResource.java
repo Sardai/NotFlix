@@ -48,14 +48,14 @@ public class GebruikersResource {
 	@GET
 	@Path("{nickname}")
 	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public Gebruiker getGebruiker(@PathParam("nickname") String nickname){
+	public Response getGebruiker(@PathParam("nickname") String nickname){
 		Notflix model = (Notflix) context.getAttribute("notflix");
 		for(Gebruiker gebruiker : model.getGebruikers()){
 			if(gebruiker.getNickname().equals(nickname)){
-				return gebruiker;
+				return Response.ok(gebruiker).build();
 			}
 		}
-		return null;
+		return Response.status(401).build();
 	}
 	
 	/**

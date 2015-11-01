@@ -26,9 +26,6 @@
 					<li><a href="index.html">Home</a></li>
 					<li><a href="register.html">Register</a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right" ng-hide="user.token==null">
-					<li><a href="" ng-click="logout()">Logout</a></li>
-				</ul>
 			</div><!--/.navbar-collapse -->
 		</div>
 	</nav>
@@ -51,9 +48,6 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="scripts/user.js"></script>
-	<div class="alert alert-danger login toast" role="alert"><h4>You need to login!</h4></div>
-	<div class="alert alert-danger 401 toast" role="alert"><h4>Username and/or password incorrect!</h4></div>
-	<div class="alert alert-success logged-in toast" role="alert"><h4>You have logged in!</h4></div>
-	<div class="alert alert-info logged-out toast" role="alert"><h4>You have logged out!</h4></div>
+	<div class="alert alert-danger notfound toast" role="alert"><h4>User not found!</h4></div>
 </body>
 </html>

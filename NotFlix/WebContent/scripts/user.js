@@ -29,7 +29,7 @@ function getuser(){
     dataType: "JSON",
 	statusCode: {
 		401: function() {
-			showToast(".401");
+			showToast(".notfound");
 		}
 	},
 	success: function(response){
@@ -65,4 +65,11 @@ function getall(){
 function cleartable(){
     console.log("clear table");
     $("#user-tbody").empty();
+}
+
+//shows a message for a few seconds.
+function showToast(selector){
+	$(".alert"+selector).fadeIn("slow",function(){
+		$(this).delay( 1200 ).fadeOut("slow");	
+	});
 }
