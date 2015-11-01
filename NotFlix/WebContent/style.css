@@ -168,3 +168,8 @@ hr.footer{
 input{
     color: black;
 }
+
+#registerform{
+	margin:auto;
+	width: 50%;
+}

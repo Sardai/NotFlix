@@ -11,22 +11,21 @@ $(function(){
 
 function register(){
         
-    var achternaam = $("#achternaam").val();
-    var tussenvoegsel = $("#tussenvoegsel").val();
-    var voornaam = $("#voornaam").val();
-    var nickname = $("#nickname").val();
-    var wachtwoord = $("#wachtwoord").val();
+    var achternaam = $("#lastname");
+    var tussenvoegsel = $("#prefix");
+    var voornaam = $("#firstname");
+    var nickname = $("#nickname");
+    var wachtwoord = $("#password");
 	
 	$.ajax({
 		url:rootUrl+"gebruikers",
 		type:"POST",
 		data:{
-            achternaam: achternaam,
-            tussenvoegsel: tussenvoegsel,
-            voornaam: voornaam,
-            nickname: nickname,
-            wachtwoord: wachtwoord,
-
+            achternaam: achternaam.val(),
+            tussenvoegsel: tussenvoegsel.val(),
+            voornaam: voornaam.val(),
+            nickname: nickname.val(),
+            wachtwoord: wachtwoord.val()
 		}, 
         
         statusCode: {
@@ -36,11 +35,11 @@ function register(){
         },
 			success:function(response){
 				// clears form fields.
-                $("#achternaam").val("");
-                $("#tussenvoegsel").val("");
-                $("#voornaam").val("");
-                $("#nickname").val("");
-                $("#wachtwoord").val("");
+                achternaam.val("");
+                tussenvoegsel.val("");
+                voornaam.val("");
+                nickname.val("");
+                wachtwoord.val("");
 			 
                 window.location.replace("index.html#registered");
 			}
