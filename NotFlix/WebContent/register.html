@@ -46,16 +46,16 @@
 		</div>
 	</nav>
     
-    <form action="http://localhost:8080/NotFlix/api/gebruikers" method="post">
+    <form>
         <table>
             <thead>
                 <tr><th>Nickname</th><th>Voornaam</th><th>Tussenvoegsel</th><th>Achternaam</th><th>Wachtwoord</th></tr>
             </thead>
             <tbody>
-                <tr><td><input type="text" name="nickname"></td><td><input type="text" name="voornaam"></td><td><input type="text" name="tussenvoegsel"></td><td><input type="text" name="achternaam"></td><td><input type="password" name="wachtwoord"></td></tr>
+                <tr><td><input id="nickname" type="text" name="nickname"></td><td><input id="voornaam" type="text" name="voornaam"></td><td><input id="tussenvoegsel" type="text" name="tussenvoegsel"></td><td><input id="achternaam" type="text" name="achternaam"></td><td><input id="wachtwoord" type="password" name="wachtwoord"></td></tr>
             </tbody>
         </table>
-        <input type=submit value="Create user">
+        <input id="create-user" type=submit value="Create user">
     </form>
 
 
@@ -63,7 +63,7 @@
 	<!-- onderaan de pagina geplaatst zodat de pagina sneller laad -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="scripts/user.js"></script>
+    <script type="text/javascript" src="scripts/register.js"></script>
 	<div class="alert alert-danger login toast" role="alert"><h4>You need to login!</h4></div>
 	<div class="alert alert-danger 401 toast" role="alert"><h4>Username and/or password incorrect!</h4></div>
 	<div class="alert alert-success logged-in toast" role="alert"><h4>You have logged in!</h4></div>
