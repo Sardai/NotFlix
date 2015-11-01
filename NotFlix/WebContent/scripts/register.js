@@ -31,6 +31,9 @@ function register(){
         statusCode: {
             401:function() {
                 showToast(".401");
+            },
+            402:function(){
+                showToast(".402");   
             }
         },
 			success:function(response){

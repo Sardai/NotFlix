@@ -95,6 +95,10 @@ public class GebruikersResource {
 		
 		Notflix model = (Notflix) context.getAttribute("notflix");
 		
+		if(nickname.equals("") || wachtwoord.equals("")){
+			return Response.status(402).build();
+		}
+		
 		if(!model.userExists(nickname)){
 			Gebruiker newGebruiker = new Gebruiker(achternaam, tussenvoegsel, voornaam, nickname, wachtwoord);
 			model.addGebruiker(newGebruiker);

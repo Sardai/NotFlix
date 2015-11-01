@@ -22,7 +22,7 @@ function getuser(){
     console.log("function call");
     
     var nickname = $("#nickname").val();
-    
+        
     $.ajax({
     type: "GET",
     url: rootUrl+"gebruikers/"+nickname,
