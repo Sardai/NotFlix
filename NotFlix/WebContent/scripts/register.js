@@ -1,5 +1,4 @@
-var domain = "http://localhost:8080";
-var rootUrl = domain+"/NotFlix/api/";
+var rootUrl = "/NotFlix/api/";
 
 $(function(){
     
