@@ -28,5 +28,29 @@ function register(){
             wachtwoord: wachtwoord,
 
 		}, 
+        
+        statusCode: {
+            401:function() {
+                showToast(".401");
+            }
+        },
+			success:function(response){
+				// clears form fields.
+                achternaam.val("");
+                tussenvoegsel.val("");
+                voornaam.val("");
+				nickname.val("");
+				wachtwoord.val("");
+				
+				//show message
+				showToast(".created");
+			}
 	});	
+}
+
+//shows a message for a few seconds.
+function showToast(selector){
+	$(".alert"+selector).fadeIn("slow",function(){
+		$(this).delay( 1200 ).fadeOut("slow");	
+	});
 }

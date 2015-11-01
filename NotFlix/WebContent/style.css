@@ -164,3 +164,7 @@ hr.footer{
     float: left;
     width: 100%;
 }
+
+input{
+    color: black;
+}

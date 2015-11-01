@@ -90,7 +90,7 @@ public class GebruikersResource {
 	 */
 	@POST
 	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
-	public void addGebruiker(@FormParam("achternaam") String achternaam, @FormParam("tussenvoegsel") String tussenvoegsel,
+	public Response addGebruiker(@FormParam("achternaam") String achternaam, @FormParam("tussenvoegsel") String tussenvoegsel,
 			@FormParam("voornaam") String voornaam, @FormParam("nickname") String nickname, @FormParam("wachtwoord") String wachtwoord){
 		
 		Notflix model = (Notflix) context.getAttribute("notflix");
@@ -98,7 +98,10 @@ public class GebruikersResource {
 		if(!model.userExists(nickname)){
 			Gebruiker newGebruiker = new Gebruiker(achternaam, tussenvoegsel, voornaam, nickname, wachtwoord);
 			model.addGebruiker(newGebruiker);
-		}		
+			return Response.ok(200).build();
+		}
+		
+		return Response.status(401).build();
 	}
 
 }
