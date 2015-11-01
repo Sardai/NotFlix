@@ -36,14 +36,16 @@ function register(){
         },
 			success:function(response){
 				// clears form fields.
-                achternaam.val("");
-                tussenvoegsel.val("");
-                voornaam.val("");
-				nickname.val("");
-				wachtwoord.val("");
+                $("#achternaam").val("");
+                $("#tussenvoegsel").val("");
+                $("#voornaam").val("");
+                $("#nickname").val("");
+                $("#wachtwoord").val("");
 				
 				//show message
 				showToast(".created");
+                
+                window.location.replace("index.html");
 			}
 	});	
 }
