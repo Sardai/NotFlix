@@ -33,11 +33,17 @@
 		</div>
 	</nav>
     
+    <form>
+        <input id="nickname" type="text" name="nickname">
+        <input id="search-user" type="submit" name="search-user" value="Search user">
+        <input id="get-all" type="submit" name="get-all" value="Get all users">
+    </form>
+    
     <table id="user-table" class="table table-bordered">
         <thead>
             <tr><th>Nickname</th><th>Voornaam</th><th>Tussenvoegsel</th><th>Achternaam</th></tr>
         </thead>
-        <tbody>
+        <tbody id="user-tbody">
         </tbody>
     </table>
     

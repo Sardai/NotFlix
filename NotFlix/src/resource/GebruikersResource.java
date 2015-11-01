@@ -43,7 +43,7 @@ public class GebruikersResource {
 	/**
 	 * 
 	 * @param nickname
-	 * @return user specifies by nickname
+	 * @return user specified by nickname
 	 */
 	@GET
 	@Path("{nickname}")
@@ -55,14 +55,14 @@ public class GebruikersResource {
 				return gebruiker;
 			}
 		}
-		return new Gebruiker();
+		return null;
 	}
 	
 	/**
 	 * 
 	 * @param nickname
 	 * @param password
-	 * @return Token for requested uder
+	 * @return Token for requested user
 	 */
 	@POST
 	@Path("/token")

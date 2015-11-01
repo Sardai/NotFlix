@@ -1,6 +1,51 @@
-$.ajax({
+var domain = "http://localhost:8080";
+var rootUrl = domain+"/NotFlix/api/";
+
+$(function(){
+    
+    $("#search-user").click(function(e){
+        e.preventDefault();
+        cleartable();
+        getuser();
+    });
+    
+    $("#get-all").click(function(e){
+        e.preventDefault();
+        console.log("onclick");
+        cleartable();
+        getall();
+    });
+});
+
+function getuser(){
+    
+    console.log("function call");
+    
+    var nickname = $("#nickname").val();
+    
+    $.ajax({
     type: "GET",
-    url: "http://localhost:8080/NotFlix/api/gebruikers",
+    url: rootUrl+"gebruikers/"+nickname,
+    dataType: "JSON",
+	statusCode: {
+		401: function() {
+			showToast(".401");
+		}
+	},
+	success: function(response){
+            $("#user-table tbody").append("<tr><td>"+response.nickname+"</td><td>"+response.voornaam+"</td><td>"+response.tussenvoegsel+"</td><td>"+response.achternaam+"</td></tr>");
+            console.log(response);
+        ;
+	}
+    });
+    
+}
+
+function getall(){
+    console.log("function call");
+    $.ajax({
+    type: "GET",
+    url: rootUrl+"gebruikers",
     dataType: "JSON",
 	statusCode: {
 		401: function() {
@@ -13,5 +58,11 @@ $.ajax({
             console.log(val);
         });
 	}
-});
+    });
 
+}
+
+function cleartable(){
+    console.log("clear table");
+    $("#user-tbody").empty();
+}
