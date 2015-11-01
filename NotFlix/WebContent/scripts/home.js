@@ -3,6 +3,13 @@ var rootUrl = domain+"/NotFlix/api/";
 var token = localStorage.getItem("token");
 showHideLogin();
 $(function(){
+
+	//user has registered, show toast.
+	if(window.location.hash == "#registered"){
+		window.location.hash = "";
+		showToast(".created");
+	}
+
 	//get movies from rest.
 	$.ajax({
 		url:rootUrl+"movies",
@@ -216,10 +223,10 @@ function search(){
 //shows or hide different elements if the user is logged in or not.
 function showHideLogin(){
 	if(token == undefined || token == null || token == ""){
-		$("[name=loginForm]").show();
+		$("[name=loginForm],#register").show();
 		$("#logout,#users").hide();		
 	}else{
-		$("[name=loginForm]").hide();
+		$("[name=loginForm],#register").hide();
 		$("#logout,#users").show();
 	}
 }

@@ -41,11 +41,8 @@ function register(){
                 $("#voornaam").val("");
                 $("#nickname").val("");
                 $("#wachtwoord").val("");
-				
-				//show message
-				showToast(".created");
-                
-                window.location.replace("index.html");
+			 
+                window.location.replace("index.html#registered");
 			}
 	});	
 }
