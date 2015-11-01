@@ -252,9 +252,9 @@ function showUserRating(el,rating){
 	el.find(".rating .star").each(function(){
 		if($(this).data("rating") <= rating){
 			$(this).addClass("blue");
-			$(this).attr("data-userRating",rating);
 		}
 	})
+	el.attr("data-userRating",rating);
 }
 
 //gets the poster of the movie from the omdbapi.
